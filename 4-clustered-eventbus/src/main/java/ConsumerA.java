@@ -20,7 +20,15 @@ public class ConsumerA {
               m -> {
                 JsonObject json = (JsonObject) m.body();
                 logger.info("ConsumerA Receiving " + json.getString("message") + " from " + json.getString("from"));
-      });
+            });
+            vertx.setPeriodic(5000,
+                    l -> {
+                        vertx.eventBus().publish("events",
+                                new JsonObject()
+                                        .put("message", "hello!I'm ConsumerA")
+                                        .put("from", "ConsumerA"));
+                    });
     });
   }
 }
+
