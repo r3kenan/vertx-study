@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 /**
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
  */
-public class Consumer {
+public class ConsumerB {
 
 
   private static Logger logger = Logger.getAnonymousLogger();
@@ -19,9 +19,7 @@ public class Consumer {
           vertx.eventBus().consumer("events",
               m -> {
                 JsonObject json = (JsonObject) m.body();
-                logger.info("Receiving "
-                    + json.getString("message")
-                    + " from " + json.getString("from"));
+                logger.info("ConsumerB Receiving " + json.getString("message") + " from " + json.getString("from"));
       });
     });
   }
